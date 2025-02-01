@@ -13,7 +13,7 @@ const AssetCard: React.FC<AssetCardProps> = ({ asset, balance, value, yieldEarne
   return (
     <motion.div 
       className="bg-gray-800 p-6 rounded-lg shadow-md"
-      whileHover={{ scale: 1.05 }}
+      whileHover={{ scale: 1.01 }}
     >
       <h3 className="text-xl font-bold">{asset}</h3>
       <p className="text-gray-400">Staked: {balance} {asset} (${value})</p>
