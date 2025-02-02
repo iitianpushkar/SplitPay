@@ -28,36 +28,38 @@
 
 ## **🛠️ Tech Stack**  
 
-| Technology | Usage |
-|------------|-------|
-| **React.js + TypeScript** | Frontend Framework |
-| **Tailwind CSS + Framer Motion** | UI/UX & Animations |
-| **Ethers.js & Web3Modal** | Blockchain & Wallet Integration |
-| **Chart.js** | Yield Analytics & Graphs |
-| **React Router** | Navigation |
-| **Solidity + Hardhat** | Smart Contracts |
+#### **🖥️ Frontend**  
+✅ **React.js (TypeScript)** – Component-based architecture for UI.  
+✅ **Vite** – Fast development server and build tool.  
+✅ **Tailwind CSS + tailwindcss-animate** – Responsive styling & animations.  
+✅ **Framer Motion** – Smooth animations & UI transitions.  
+✅ **Radix UI** – Accessible UI components (`Dialog`, `DropdownMenu`, `Tabs`, etc.).  
+✅ **Lucide Icons & React Icons** – Modern SVG-based icons.  
+✅ **Chart.js + react-chartjs-2** – Yield analytics & performance graphs.  
+✅ **React Router** – Client-side navigation.  
+✅ **Zustand** – Global state management.  
 
----
+#### **🔗 Web3 & Blockchain**  
+✅ **Ethers.js** – Ethereum smart contract interaction.  
+✅ **Web3.js** – Alternative blockchain interaction library.  
+✅ **SnarkJS** – Zero-knowledge proof support for zkEmail & privacy features.  
 
-## **📂 Folder Structure**  
-```
-split-finance/
-│── frontend/               # Frontend Code (React + TypeScript)
-│   ├── components/         # Reusable UI Components
-│   │   ├── Navbar.tsx      # Navigation Bar
-│   │   ├── StakingCalculator.tsx  # AI Staking Calculator
-│   │   ├── PaymentTools.tsx  # SplitPay Payment Options
-│   ├── pages/              
-│   │   ├── WelcomePage.tsx  # Entry Page (No Navbar)
-│   │   ├── Dashboard.tsx    # User Portfolio & Staking Summary
-│   │   ├── StakingPage.tsx  # Stake Assets & AI Predictions
-│   │   ├── SplitPayPage.tsx # Payments using Yield
-│   ├── App.tsx             # Main Entry Point with Routing
-│── smart-contracts/        # Smart Contracts & Hardhat Setup
-│── backend/                # API & Backend Services
-│── README.md               # Project Documentation
-│── package.json            # Dependencies & Scripts
-```
+#### **🤖 AI & Data Handling**  
+✅ **Zod** – Schema validation for forms & API responses.  
+✅ **React Hook Form + Hookform Resolvers** – Optimized form handling.  
+✅ **Axios** – HTTP requests for blockchain & API integration.  
+
+#### **📦 Dev Tools & Build System**  
+✅ **ESLint + TypeScript ESLint** – Code linting & best practices.  
+✅ **Autoprefixer + PostCSS** – Cross-browser CSS compatibility.  
+✅ **Vite** – Fast bundling & optimized builds.  
+
+#### **🔥 Additional Libraries**  
+✅ **React Hot Toast** – Real-time notifications (e.g., wallet connection).  
+✅ **Embla Carousel** – Auto-playing feature carousel.  
+✅ **Copy-to-Clipboard** – Easy address copying for wallets.  
+
+🚀 **Fully optimized for performance, accessibility, and scalability!** Would you like any **extra enhancements**, such as **AI-powered gas fee optimizations**? 😊
 
 ---
 
