@@ -3,18 +3,29 @@ import { motion } from "framer-motion";
 import { FaSearch } from "react-icons/fa";
 
 const assets = [
-  { name: "ETH", apy: "8.5%" },
-  { name: "MATIC", apy: "9.2%" },
-  { name: "BTC", apy: "6.8%" },
-  { name: "SOL", apy: "7.4%" },
-  { name: "USDC", apy: "5.0%" },
+  { name: "ETH", apy: 8.5 },
+  { name: "MATIC", apy: 9.2 },
+  { name: "BTC", apy: 6.8 },
+  { name: "SOL", apy: 7.4 },
+  { name: "USDC", apy: 5.0 },
+  { name: "USDT", apy: 5.0 },
+  { name: "AAVE", apy: 5.0 },
+  { name: "UNI", apy: 5.0 },
+  { name: "LINK", apy: 5.0 },
+  { name: "YFI", apy: 5.0 },
+  { name: "SUSHI", apy: 5.0 },
+  { name: "COMP", apy: 5.0 },
+  { name: "SNX", apy: 5.0 },
+  { name: "MKR", apy: 5.0 },
+  { name: "WBTC", apy: 5.0 },
 ];
 
 interface AssetSelectionProps {
   onSelectAsset: (asset: string) => void;
+  setApy: (apy: string) => void;
 }
 
-const AssetSelection: React.FC<AssetSelectionProps> = ({ onSelectAsset }) => {
+const AssetSelection: React.FC<AssetSelectionProps> = ({ onSelectAsset,setApy }) => {
   const [search, setSearch] = useState("");
 
   return (
@@ -30,7 +41,7 @@ const AssetSelection: React.FC<AssetSelectionProps> = ({ onSelectAsset }) => {
         />
       </div>
 
-      <div className="grid grid-cols-2 md:grid-cols-3 gap-4 mt-4">
+      <div className="grid grid-cols-2 md:grid-cols-3 gap-4 mt-10 overflow-y-scroll h-[200px]">
         {assets
           .filter((a) => a.name.toLowerCase().includes(search.toLowerCase()))
           .map((asset) => (
@@ -38,10 +49,12 @@ const AssetSelection: React.FC<AssetSelectionProps> = ({ onSelectAsset }) => {
               key={asset.name}
               className="bg-gray-800 p-4 rounded-lg cursor-pointer hover:bg-gray-700 transition"
               whileHover={{ scale: 1.05 }}
-              onClick={() => onSelectAsset(asset.name)}
+              onClick={() => {onSelectAsset(asset.name);
+              setApy(asset.apy.toString());
+              }}
             >
               <h3 className="text-lg font-bold">{asset.name}</h3>
-              <p className="text-green-400">APY: {asset.apy}</p>
+              <p className="text-green-400">APY: {asset.apy}%</p>
             </motion.div>
           ))}
       </div>

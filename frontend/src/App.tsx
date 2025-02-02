@@ -1,4 +1,4 @@
-import React , {useEffect,useState} from "react";
+import React, { useEffect, useState } from "react";
 import {
   BrowserRouter as Router,
   Routes,
@@ -14,7 +14,6 @@ import AIChatbot from "./pages/WelcomePage/components/AIChatbot";
 import ChatICon from "@/components/icons/icons8-chatbot.gif";
 import { motion, AnimatePresence } from "framer-motion";
 
-
 const questions: string[] = [
   "What is Yield Farming? 🤔",
   "How does AI optimize my staking? 🚀",
@@ -28,26 +27,27 @@ const App: React.FC = () => {
   const [currentQuestion, setCurrentQuestion] = useState<string>(questions[0]);
 
   useEffect(() => {
-      
-  
-      // Periodically change the chatbot question every 3 seconds
-      const interval = setInterval(() => {
-        setCurrentQuestion((prev) => {
-          const currentIndex = questions.indexOf(prev);
-          return questions[(currentIndex + 1) % questions.length];
-        });
-      }, 5000); // Change question every 3 seconds
-  
-      return () => clearInterval(interval);
-    }, []);
+    // Periodically change the chatbot question every 3 seconds
+    const interval = setInterval(() => {
+      setCurrentQuestion((prev) => {
+        const currentIndex = questions.indexOf(prev);
+        return questions[(currentIndex + 1) % questions.length];
+      });
+    }, 5000); // Change question every 3 seconds
+
+    return () => clearInterval(interval);
+  }, []);
   return (
     <Router>
-       {/* AI Chatbot Toggle */}
-       {isChatBotOpen ? (
-        <AIChatbot isChatBotOpen={isChatBotOpen} setIsChatBotOpen={setIsChatBotOpen} />
+      <div className="max-h-screen">
+      {/* AI Chatbot Toggle */}
+      {isChatBotOpen ? (
+        <AIChatbot
+          isChatBotOpen={isChatBotOpen}
+          setIsChatBotOpen={setIsChatBotOpen}
+        />
       ) : (
         <>
-
           {/* Animated Changing Questions Above Chatbot */}
           <AnimatePresence mode="wait">
             <motion.p
@@ -61,24 +61,24 @@ const App: React.FC = () => {
               {currentQuestion}
             </motion.p>
           </AnimatePresence>
-        <motion.div
-          className="absolute bottom-0 right-9 z-10"
-          initial={{ opacity: 0, scale: 0.8 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.5 }}
-        >
-
-          {/* Chatbot Icon */}
-          <img
-            src={ChatICon}
-            alt="Chatbot"
-            className="h-[100px] w-[100px] cursor-pointer transition-all duration-300 hover:scale-110"
-            onClick={() => setIsChatBotOpen((prev) => !prev)}
-          />
-        </motion.div>
+          <motion.div
+            className="absolute bottom-0 right-9 z-10"
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.5 }}
+          >
+            {/* Chatbot Icon */}
+            <img
+              src={ChatICon}
+              alt="Chatbot"
+              className="h-[100px] w-[100px] cursor-pointer transition-all duration-300 hover:scale-110"
+              onClick={() => setIsChatBotOpen((prev) => !prev)}
+            />
+          </motion.div>
         </>
       )}
       <MainApp />
+      </div>
     </Router>
   );
 };

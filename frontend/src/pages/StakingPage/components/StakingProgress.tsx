@@ -1,17 +1,26 @@
 import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
+import { useAppStore } from "@/store/store";
 
 interface StakingProgressProps {
   asset: string;
   amount: number;
-  duration: number;
 }
 
-const StakingProgress: React.FC<StakingProgressProps> = ({ asset, amount, duration }) => {
+const StakingProgress: React.FC<StakingProgressProps> = ({ asset, amount }) => {
   const [status, setStatus] = useState("Processing...");
+  const {setStakeInfo,stakeInfo} = useAppStore();
 
   useEffect(() => {
-    setTimeout(() => setStatus("Success! Staked " + amount + " " + asset), 3000);
+    setTimeout(
+      () => {setStatus("Success! Staked " + amount + " " + asset);
+        const newStakeInfo = {asset:asset, amount:amount,duration:0,yield:0};
+        setStakeInfo([...stakeInfo,newStakeInfo]);
+        console.log("Stake Info",newStakeInfo);
+      },
+      3000
+    );
+
   }, [asset, amount]);
 
   return (

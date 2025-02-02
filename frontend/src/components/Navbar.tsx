@@ -9,10 +9,12 @@ import {
 import { GiMiner } from "react-icons/gi";
 import { IoMdLogOut } from "react-icons/io";
 import { toast } from "react-hot-toast";
+import { useAppStore } from "@/store/store";
 
 const Navbar: React.FC = () => {
+  const { userWalletAddress } = useAppStore();
   const [walletAddress, setWalletAddress] = useState<string | null>(
-    "0xAbc...1234"
+    userWalletAddress ?? null
   );
   const [isDropdownOpen, setDropdownOpen] = useState<boolean>(false);
   const [darkMode, setDarkMode] = useState<boolean>(true);

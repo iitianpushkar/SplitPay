@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useRef } from "react";
 import { motion } from "framer-motion";
 import { FaLock, FaUnlock, FaArrowRight } from "react-icons/fa";
+import { useAppStore } from "@/store/store";
 
 interface ActiveStake {
   asset: string;
@@ -21,8 +22,11 @@ const activeStakes: ActiveStake[] = [
 const StakingDashboard: React.FC = () => {
   const [withdrawable, setWithdrawable] = useState<{ [key: string]: boolean }>({});
   const tableRef = useRef<HTMLDivElement>(null); // Ref for scrolling
+  const {stakeInfo} = useAppStore();
 
-  useEffect(() => {
+  useEffect((
+
+  ) => {
     // Simulated backend check (Replace this with an actual API call)
     const checkWithdrawable = async () => {
       const simulatedBackendResponse = {
@@ -48,7 +52,7 @@ const StakingDashboard: React.FC = () => {
         <h3 className="text-lg font-semibold text-blue-400 mb-3">Active Stakes</h3>
         <div
           ref={tableRef}
-          className="overflow-x-auto max-h-[250px] border border-gray-700 rounded-lg shadow-lg"
+          className="overflow-x-auto max-h-[200px] border border-gray-700 rounded-lg shadow-lg"
         >
           <table className="w-full text-left border-collapse">
             <thead>
@@ -61,12 +65,12 @@ const StakingDashboard: React.FC = () => {
               </tr>
             </thead>
             <tbody>
-              {activeStakes.map((stake, index) => (
+              {stakeInfo.map((stake, index) => (
                 <tr key={index} className="border-t border-gray-700 hover:bg-gray-700/50 transition">
                   <td className="p-3">{stake.asset}</td>
                   <td className="p-3">{stake.amount}</td>
                   <td className="p-3">{stake.duration} months</td>
-                  <td className="p-3">{((stake.amount * stake.apy) / 100).toFixed(2)} {stake.asset}</td>
+                  <td className="p-3">{((stake.yield) / 100).toFixed(2)} {stake.asset}</td>
                   <td className="p-3 text-center">
                     {withdrawable[stake.asset] ? (
                       <button

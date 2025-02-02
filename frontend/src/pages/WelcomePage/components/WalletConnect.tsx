@@ -16,6 +16,7 @@ import Ledger from "@/components/icons/ledger.png";
 import Argent from "@/components/icons/Argent.png";
 import Rainbow from "@/components/icons/rainbow.png";
 import Trust from "@/components/icons/Trust.png";
+import { useAppStore } from "@/store/store";
 
 declare global {
   interface Window {
@@ -26,21 +27,26 @@ declare global {
 const WalletConnect: React.FC = () => {
   const [wallet, setWallet] = useState<string[] | null>(null);
   const [walletOptionOpen, setWalletOptionOpen] = useState<boolean>(false);
+  const [walletButtonText, setWalletButtonText] = useState<string>("Connect To Wallet");
+  const {setUserWalletAddress,userWalletAddress} = useAppStore();
 
   const connectMetaMask = async (): Promise<void> => {
     if (window.ethereum) {
       const web3 = new Web3(window.ethereum);
       await window.ethereum.request({ method: "eth_requestAccounts" });
-      setWallet(await web3.eth.getAccounts());
+      const accounts = await web3.eth.getAccounts();
+      console.log("Wallet", accounts[0]);
+      setWallet(accounts);
       setWalletOptionOpen(false); // Close dialog after connection
+      setUserWalletAddress(accounts[0]);
+      setWalletButtonText("Connected");
+
     } else {
       alert("MetaMask not detected!");
     }
   };
 
-  const connectZkEmail = (): void => {
-    alert("zkEmail onboarding coming soon!"); // Implement zkEmail logic
-  };
+  
 
   const handleWalletOption = (walletName: string): void => {
     if (walletName === "MetaMask") {
@@ -50,6 +56,8 @@ const WalletConnect: React.FC = () => {
     }
   };
 
+  console.log("Wallet Address",userWalletAddress);
+
   return (
     <div className="flex flex-col items-center mt-10 space-y-4 pl-5">
       <motion.button
@@ -58,7 +66,7 @@ const WalletConnect: React.FC = () => {
         whileHover={{ scale: 1.1 }}
         onClick={() => setWalletOptionOpen(true)}
       >
-        Connect To Wallet
+        {walletButtonText}
       </motion.button>
 
       <Dialog open={walletOptionOpen} onOpenChange={setWalletOptionOpen}>
@@ -156,14 +164,6 @@ const WalletConnect: React.FC = () => {
         </DialogContent>
       </Dialog>
 
-      <motion.button
-        className="py-3 rounded-full text-white text-md font-semibold w-[200px] 
-  bg-gradient-to-r from-blue-500 to-purple-600 relative overflow-hidden shadow-xl"
-        whileHover={{ scale: 1.1 }}
-        onClick={connectZkEmail}
-      >
-        Sign in with zkEmail
-      </motion.button>
       {wallet && <p className="text-green-400">Connected: {wallet[0]}</p>}
     </div>
   );

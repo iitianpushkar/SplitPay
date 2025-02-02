@@ -20,6 +20,7 @@ import {
   CarouselItem,
 } from "@/components/ui/carousel";
 import Autoplay from "embla-carousel-autoplay";
+import { useAppStore } from "@/store/store";
 
 ChartJS.register(
   CategoryScale,
@@ -63,6 +64,7 @@ const features: Feature[] = [
 
 const Dashboard: React.FC = () => {
   const chartRef = useRef<ChartJS | null>(null);
+  const { stakeInfo } = useAppStore();
 
   useEffect(() => {
     return () => {
@@ -73,17 +75,17 @@ const Dashboard: React.FC = () => {
   }, []);
 
   const yieldHistory = {
-    labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun"],
+    labels: stakeInfo.map((stake, index) => `Month ${index + 1}`), // Dynamic Labels
     datasets: [
       {
         label: "Yield Earned ($)",
-        data: [50, 120, 180, 260, 340, 420],
+        data: stakeInfo.map((stake) => stake.yield), // Fetch yield dynamically
         borderColor: "#3B82F6",
         backgroundColor: "rgba(59, 130, 246, 0.4)",
         fill: true,
-        tension: 0.4, // Smooth curved line
-        pointRadius: 6, // Bigger points
-        pointHoverRadius: 10, // Enlarge points on hover
+        tension: 0.4,
+        pointRadius: 6,
+        pointHoverRadius: 10,
         pointBackgroundColor: "#3B82F6",
         pointBorderColor: "#fff",
       },
@@ -98,7 +100,7 @@ const Dashboard: React.FC = () => {
         display: true,
         labels: {
           color: "white",
-          font: { size: 14, weight: "bold" },
+          font: { size: 14, weight: 700 },
         },
       },
       tooltip: {

@@ -1,12 +1,13 @@
 import { useState, useEffect, useRef } from "react";
 import { motion } from "framer-motion";
+import axios from "axios";
 
 interface AIChatbotProps {
   setIsChatBotOpen: (value: boolean) => void;
 }
 
 const AIChatbot = ({ setIsChatBotOpen }: AIChatbotProps) => {
-  const [messages, setMessages] = useState<{ text: string; sender: "bot" | "user" }[]>([
+  const [messages, setMessages] = useState<any>([
     { text: "Hello! I’m SplitBot 🤖. Ask me about staking yield!", sender: "bot" },
   ]);
   const [input, setInput] = useState("");
@@ -17,19 +18,23 @@ const AIChatbot = ({ setIsChatBotOpen }: AIChatbotProps) => {
     chatEndRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages]);
 
-  const handleSend = () => {
+  const handleSend = async () => {
     if (!input.trim()) return;
     
-    const newMessages = [...messages, { text: input, sender: "user" as "user" }];
+    const newMessages = [...messages, { text: input, sender: "user" }];
     setMessages(newMessages);
     setInput("");
     setIsTyping(true);
+    try {
+        const response = await axios.post("http://localhost:3000/api/chat", { prompt: input });
+        setMessages([...newMessages, { text: response.data?.response, sender : "bot" }]);
+    } catch (error) {
+        console.error("Error fetching response:", error);
+        setMessages([...newMessages, { text: "Error getting response. Try again!", sender: "bot" }]);
+    }
 
-    setTimeout(() => {
-      setMessages([...newMessages, { text: "AI predicts 8.5% APY on ETH staking! 🚀", sender: "bot" as "bot" }]);
-      setIsTyping(false);
-    }, 1200);
-  };
+    setIsTyping(false);
+};
 
   return (
     <motion.div
