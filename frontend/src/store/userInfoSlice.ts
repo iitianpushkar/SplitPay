@@ -13,6 +13,8 @@ export interface UserState {
 export const createUserSlice: StateCreator<UserState> = (set) => ({
   userWalletAddress: undefined,
   stakeContractInstance: null,
+  totalValue : 0,
+  setTotalValue: (totalValue) => set({ totalValue }),
   stakeInfo: [],
   setStakeInfo: (stakeInfo) => set({ stakeInfo }),
   setUserWalletAddress: (userWalletAddress) => set({ userWalletAddress }),

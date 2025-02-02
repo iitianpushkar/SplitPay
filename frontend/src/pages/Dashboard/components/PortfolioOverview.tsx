@@ -33,7 +33,7 @@ import { error } from "console";
 const PortfolioOverview: React.FC = () => {
   const { stakeInfo } = useAppStore();
   const [prices, setPrices] = useState<{ [key: string]: number }>({});
-  const [totalValue, setTotalValue] = useState<number>(0);
+  const {totalValue, setTotalValue} = useAppStore();
   const chartRef = useRef<ChartJS | null>(null);
   const API_KEY = import.meta.env.VITE_API_KEY;
   const BASE_URL = "https://min-api.cryptocompare.com/data/price";
@@ -64,8 +64,7 @@ const PortfolioOverview: React.FC = () => {
       const assetPrice = prices.USD || 0;
       console.log("Asset Price", assetPrice);
       const stakeAmount = parseFloat(stake.amount.toString());
-      console.log("Total", sum + assetPrice * stakeAmount);
-      totalvalue += price.USD * stake.amount;
+      totalvalue += prices.USD * stake.amount;
       console.log("Total Value", totalvalue);
     
     }, 0);
@@ -85,7 +84,7 @@ const PortfolioOverview: React.FC = () => {
     labels: stakeInfo.map((stake) => stake.asset),
     datasets: [
       {
-        data: stakeInfo.map((stake) => stake.amount * (prices[stake.asset] || 0)),
+        data: stakeInfo.map((stake) => stake.amount * (prices.USD || 0)),
         backgroundColor: ["#3B82F6", "#F59E0B", "#F43F5E", "#10B981", "#A855F7", "#EF4444"], // Expandable colors
       },
     ],

@@ -42,22 +42,22 @@ interface Feature {
 
 const features: Feature[] = [
   {
-    asset:"ETH", balance:2, value:6000 ,yieldEarned:0.17 ,apy:8.5
+    asset:"ETH", balance:2, value:6000 ,yieldEarned:0.17 ,apy:2.8
   },
   {
-    asset:"MATIC", balance:500, value:1000 ,yieldEarned:0.17 ,apy:9.2
+    asset:"MATIC", balance:500, value:1000 ,yieldEarned:0.17 ,apy:10.1
   },
   {
-    asset:"BTC", balance:0.5, value:30000 ,yieldEarned:0.17 ,apy:6.8
+    asset:"BTC", balance:0.5, value:30000 ,yieldEarned:0.17 ,apy:8.9
   },
   {
-    asset:"SOL", balance:10, value:1000 ,yieldEarned:0.17 ,apy:7.5
+    asset:"SOL", balance:10, value:1000 ,yieldEarned:0.17 ,apy:8.8
   },
   {
-    asset:"ADA", balance:100, value:1000 ,yieldEarned:0.17 ,apy:8.0
+    asset:"ADA", balance:100, value:1000 ,yieldEarned:0.17 ,apy:2.8
   },
   {
-    asset:"DOT", balance:50, value:1000 ,yieldEarned:0.17 ,apy:7.8
+    asset:"DOT", balance:50, value:1000 ,yieldEarned:0.17 ,apy:11.3
   },
   
 ];

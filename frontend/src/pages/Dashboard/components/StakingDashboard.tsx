@@ -22,7 +22,7 @@ const activeStakes: ActiveStake[] = [
 const StakingDashboard: React.FC = () => {
   const [withdrawable, setWithdrawable] = useState<{ [key: string]: boolean }>({});
   const tableRef = useRef<HTMLDivElement>(null); // Ref for scrolling
-  const {stakeInfo} = useAppStore();
+  const {stakeInfo , stakeContractInstance} = useAppStore();
 
   useEffect((
 
@@ -75,7 +75,10 @@ const StakingDashboard: React.FC = () => {
                     {withdrawable[stake.asset] ? (
                       <button
                         className="px-4 py-2 bg-green-600 hover:bg-green-700 text-white font-semibold rounded-lg transition"
-                        onClick={() => alert(`Withdrawing ${stake.amount} ${stake.asset}`)}
+                        onClick={async () =>{alert(`Withdrawing ${stake.amount} ${stake.asset}`)
+                        const response = await stakeContractInstance?.withdrawStake()
+                        console.log(response)
+                      }}
                       >
                         Withdraw <FaArrowRight className="inline ml-1" />
                       </button>
