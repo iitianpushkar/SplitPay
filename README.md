@@ -1,15 +1,12 @@
 # **Split Finance 🚀 – Stake, Earn, & Pay with Yield**  
 
-![Split Finance](https://your-banner-image-url.com)  
-
-🔗 **Live Demo:** [Coming Soon]  
-📜 **Documentation:** [Coming Soon]  
-🌍 **Network Support:** Ethereum, Polygon, Solana  
+ 
+🌍 **Network Support:** Ethereum, Polygon
 
 ---
 
 ## **📌 Overview**  
-**Split Finance** is a cutting-edge **DeFi protocol** that allows users to **stake assets, earn yield, and pay for real-world expenses without selling their holdings**. Using **AI-powered yield optimization and zkEmail integration**, Split Finance offers a **seamless** staking and payment experience across multiple chains.  
+**Split Finance** is a cutting-edge **DeFi protocol** that allows users to **stake assets, earn yield, and pay for real-world expenses without selling their holdings**. Using **AI-powered yield optimization and zkp integration on polygon amoy chain**, Split Finance offers a **seamless** staking and payment experience across multiple chains.  
 
 ---
 
@@ -17,23 +14,15 @@
 
 ### 🔹 **Staking Platform**  
 ✅ **Multi-Asset Support** – Stake **ETH, MATIC, BTC, SOL, USDC, & 100+ tokens**.  
-✅ **AI Yield Optimization** – Get **real-time APY predictions** & auto-allocate funds.  
-✅ **Gas Fee Optimization** – AI suggests the **best times** to stake & unstake.  
-✅ **Secure & Trustless** – Built on **Ethereum & Polygon**, using audited smart contracts.  
+✅ **AI Yield Optimization** – Get **real-time APY predictions** & auto-allocate funds.
+✅ **Secure & Trustless** – Built on **Ethereum & Polygon**, using audited smart contracts and api data are zk proved.  
 
 ### 💳 **SplitPay (Payments Using Yield)**  
-✅ **Buy Now, Pay Never (BNPL)** – Use **staked yield** to pay in **installments**.  
+✅ **Buy Now, Pay Never (BNPL)** – Use **staked yield** to pay and you dont need to wait for you returns.  
 ✅ **Subscription Management** – Auto-pay services like **Netflix, Spotify, AWS**.  
-✅ **One-Time Payments** – Pay merchants directly using **earned yield**.  
 ✅ **Merchant API** – Businesses can accept crypto payments seamlessly.  
 
-### 🌍 **Cross-Chain Support**  
-✅ **Swap assets** between Ethereum & Polygon.  
-✅ **Stake assets across multiple chains** and earn **AI-optimized rewards**.  
 
-### 🔐 **zkEmail & Privacy**  
-✅ **Zero-Knowledge Proofs** ensure **secure, private email confirmations**.  
-✅ **Encrypted transaction history & yield reports**.  
 
 ---
 
@@ -46,8 +35,6 @@
 | **Ethers.js & Web3Modal** | Blockchain & Wallet Integration |
 | **Chart.js** | Yield Analytics & Graphs |
 | **React Router** | Navigation |
-| **TensorFlow.js** | AI Yield Prediction |
-| **zkEmail** | Privacy-Preserving Transactions |
 | **Solidity + Hardhat** | Smart Contracts |
 
 ---
