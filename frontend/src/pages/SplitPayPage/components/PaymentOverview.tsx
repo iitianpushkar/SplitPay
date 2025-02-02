@@ -10,7 +10,7 @@ const PaymentOverview: React.FC = () => {
       transition={{ duration: 0.5 }}
     >
       <h2 className="text-2xl font-bold">💰 Total Available Yield</h2>
-      <p className="text-4xl font-semibold text-green-400 mt-2">$1,200</p>
+      <p className="text-4xl font-semibold text-green-400 mt-2">$1.6</p>
       <p className="text-sm text-gray-400">From staked assets (ETH, MATIC, BTC).</p>
 
       <h3 className="mt-6 text-lg font-bold text-blue-400">Recent Payments</h3>

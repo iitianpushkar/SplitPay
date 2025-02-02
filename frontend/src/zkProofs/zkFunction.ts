@@ -21,7 +21,7 @@ export async function generateProof(hashed_value : any) {
 async function verifyOnChain(proof: any, publicSignals: any) {
     const provider =new ethers.providers.JsonRpcProvider("https://polygon-amoy.g.alchemy.com/v2/YpTOiIV_bZ2zl3hruyIhGq10SY8O-JfF");
 
-    const privateKey = "672f2093e66f1769515da9289e89ce4643c0dbe36b4fb25a3c50b6a7df2219d5"
+    const privateKey = "........."
     const signer =new ethers.Wallet(privateKey , provider);
     const contract = new ethers.Contract(CONTRACT_ADDRESS, verifierABI, signer);
 
