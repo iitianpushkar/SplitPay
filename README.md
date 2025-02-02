@@ -59,16 +59,52 @@
 ✅ **Embla Carousel** – Auto-playing feature carousel.  
 ✅ **Copy-to-Clipboard** – Easy address copying for wallets.  
 
-🚀 **Fully optimized for performance, accessibility, and scalability!** Would you like any **extra enhancements**, such as **AI-powered gas fee optimizations**? 😊
+# zk-SNARK Proof for API Data Verification
+
+## Overview
+This project demonstrates how to use **zk-SNARKs** with **Circom** and **Groth16** to verify API-fetched data on-chain. We use **zero-knowledge proofs (ZKPs)** to prove that the API response matches an expected value **without revealing** the actual API data on-chain.
+
+## Architecture
+1. **Circom Circuit (`YieldProof.circom`)** - Defines the logic for verifying that the API response matches the expected value.
+2. **Groth16 Prover** - Generates zk-proofs off-chain.
+3. **Solidity Smart Contract (`YieldVerifier.sol`)** - Verifies the proof on-chain.
+4. **Foundry Deployment & Interaction** - Deploys the verifier contract and uses `cast call` to verify the zk-proof.
 
 ---
+## 1️⃣ Circom Circuit (zk-SNARK Setup)
+
+```circom
+pragma circom 2.0.0;
+
+template YieldProof() {
+    signal input apiYield;      // Yield value fetched from API
+    signal input expectedYield; // Expected yield (claimed by user)
+    signal output isValid;      // Output: 1 if valid, 0 otherwise
+
+    // Ensure isValid is 1 only if apiYield equals expectedYield
+    isValid <== 1 - ((apiYield - expectedYield) * (apiYield - expectedYield));
+}
+
+component main = YieldProof();
+```
+
+### Steps to Compile and Generate Proof
+```sh
+circom YieldProof.circom --r1cs --wasm --sym --c
+snarkjs groth16 setup YieldProof.r1cs powersOfTau28_hez_final_10.ptau YieldProof_0000.zkey
+snarkjs groth16 prove YieldProof_0000.zkey input.json proof.json public.json
+```
+
+
+---
+
 
 ## **🚀 Installation & Setup**  
 
 ### **1️⃣ Clone the Repository**  
 ```sh
-git clone https://github.com/your-repo/split-finance.git
-cd split-finance
+git clone git@github.com:iitianpushkar/SplitPay.git
+cd SplitPay
 ```
 
 ### **2️⃣ Install Dependencies**  
@@ -79,23 +115,25 @@ npm install
 
 ### **3️⃣ Run the Development Server**  
 ```sh
+cd backend
 npm run dev
 ```
-🌍 Open **http://localhost:3000** to see the app in action.  
 
-### **4️⃣ Smart Contract Deployment**  
+
+### **3️⃣ Run the Development Server**  
 ```sh
-cd smart-contracts
-npx hardhat compile
-npx hardhat deploy
+cd marketplace
+npm run dev
 ```
 
-### **5️⃣ Environment Variables (`.env`)**  
-Create a `.env` file inside `/frontend` & `/backend` directories with:  
-```env
-NEXT_PUBLIC_ALCHEMY_API_KEY=your-alchemy-api-key
-NEXT_PUBLIC_WALLET_CONNECT_PROJECT_ID=your-wallet-connect-id
-```
+### **4️⃣ Smart Contracts are Deploymed on TestNet**  
+
+stakeContractAddress = "0xb7F3A2124DDE9b7Bc7eFfE7DC48bABC78c131976"
+marketPlaceContractAddress = "0x4f66060e4623f9a54cF56618e4059216420Bd666"
+zkPContract given by Circom after making circuit = "0xbEa09879B6a09214f54358c85386cf613D06bd08"
+yielTokenContractAddress = "0x6C05Cd0bEA8D8964c29eCF641609ACF017b484AA"
+
+
 
 ---
 
@@ -126,10 +164,6 @@ NEXT_PUBLIC_WALLET_CONNECT_PROJECT_ID=your-wallet-connect-id
 
 ---
 
-## **🔒 Security & Audits**  
-✅ **Smart Contracts Audited** – Code reviewed by industry experts.  
-✅ **zkEmail Integration** – Ensures **privacy-preserving transactions**.  
-✅ **Non-Custodial & Decentralized** – **Your keys, your funds**.  
 
 ---
 
@@ -165,12 +199,3 @@ We **welcome contributions** from the community! 🚀
 This project is licensed under the **MIT License**.  
 
 ---
-
-### **🚀 Start Staking & Paying with Yield Today!**
-```sh
-git clone https://github.com/your-repo/split-finance.git
-cd split-finance && npm install && npm run dev
-```
----
-
-Would you like **real-time APY fetching** from **DeFi protocols like Aave & Lido** added to the documentation? 😊🚀
