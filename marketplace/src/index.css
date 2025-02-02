@@ -1,0 +1,24 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --sidebar-bg: #f3f4f6;
+  --sidebar-fg: #1f2937;
+  --sidebar-accent-bg: #e5e7eb;
+  --sidebar-accent-fg: #111827;
+  --sidebar-primary-bg: #3b82f6;
+  --sidebar-primary-fg: #ffffff;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --sidebar-bg: #1f2937;
+    --sidebar-fg: #f3f4f6;
+    --sidebar-accent-bg: #374151;
+    --sidebar-accent-fg: #f9fafb;
+    --sidebar-primary-bg: #3b82f6;
+    --sidebar-primary-fg: #ffffff;
+  }
+}
+
